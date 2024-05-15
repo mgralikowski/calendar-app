@@ -16,8 +16,6 @@ class Location extends Model
 
     /**
      * Owner.
-     *
-     * @return BelongsTo
      */
     public function manager(): BelongsTo
     {

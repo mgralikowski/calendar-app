@@ -23,9 +23,9 @@ class EventController extends Controller
                     ->orWhereHas('participants', fn (Builder $query) => $query->where('user_id', $user->getKey()))
                     ->orWhereHas('location', fn (Builder $query) => $query->where('manager_id', $user->getKey()));
             })
-            ->when($request->get('day'), static fn(Builder $query, string $date) => $query->whereDate('start', $date))
-            ->when($request->get('location_id'), static fn(Builder $query, string $locationUuid) => $query->whereRelation('location', $locationUuid))
-            ->when($request->get('query'), static fn(Builder $query, string $search) => $query->where('name', 'LIKE', "%{$search}%")->orWhere('agenda', 'LIKE', "%{$search}%"))
+            ->when($request->get('day'), static fn (Builder $query, string $date) => $query->whereDate('start', $date))
+            ->when($request->get('location_id'), static fn (Builder $query, string $locationUuid) => $query->whereRelation('location', $locationUuid))
+            ->when($request->get('query'), static fn (Builder $query, string $search) => $query->where('name', 'LIKE', "%{$search}%")->orWhere('agenda', 'LIKE', "%{$search}%"))
             ->get();
 
         // @todo use ApiResource
@@ -46,6 +46,7 @@ class EventController extends Controller
     public function show(Event $event): Event
     {
         Gate::authorize('view', $event);
+
         return $event->load('location'); // @todo use ApiResource
     }
 }

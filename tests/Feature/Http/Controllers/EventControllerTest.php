@@ -47,7 +47,6 @@ class EventControllerTest extends TestCase
             'location_id' => $conferenceRoom->id,
         ], ['Accept' => 'application/json']);
 
-
         $response->assertStatus(422);
         $response->assertJsonValidationErrors(['name']);
     }
@@ -65,7 +64,6 @@ class EventControllerTest extends TestCase
             'participants' => [$user->email],
             'location_id' => $conferenceRoom->id,
         ], ['Accept' => 'application/json']);
-
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors(['end']);

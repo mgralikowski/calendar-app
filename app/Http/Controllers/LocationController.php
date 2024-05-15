@@ -27,6 +27,7 @@ class LocationController extends Controller
     public function show(Location $location): Location
     {
         Gate::authorize('view', $location);
+
         return $location; // @todo use ApiResource
     }
 }

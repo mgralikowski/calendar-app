@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Models\Location;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Exists;
 
@@ -21,7 +20,7 @@ class StoreEventRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'agenda' => ['required', 'string'],
             'start' => ['required', 'date'],
-            'end' => ['required', 'date', 'after:start', 'before_or_equal:'. $this->date('start')->addHours(8)],
+            'end' => ['required', 'date', 'after:start', 'before_or_equal:'.$this->date('start')->addHours(8)],
             'participants' => ['required', 'array'],
             'participants.*' => ['email', new Exists(User::class, 'email')],
             'location_id' => ['nullable', 'uuid', new Exists(Location::class, 'id')],

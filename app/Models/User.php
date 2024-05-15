@@ -33,8 +33,6 @@ class User extends Authenticatable
 
     /**
      * Owned locations (rooms).
-     *
-     * @return HasMany
      */
     public function locations(): HasMany
     {
@@ -43,8 +41,6 @@ class User extends Authenticatable
 
     /**
      * Events in which this user participates.
-     *
-     * @return BelongsToMany
      */
     public function events(): BelongsToMany
     {
