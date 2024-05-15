@@ -24,7 +24,9 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
+            'company_id' => fake()->randomElement(['4219794e-4b6f-4e76-b43b-048c50599c55', fake()->uuid]),
             'name' => fake()->name(),
+            'timezone' => fake()->timezone,
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
